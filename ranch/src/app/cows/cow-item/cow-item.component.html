@@ -1,0 +1,9 @@
+
+<div>
+<p>Tag: {{ cow.tag }}</p>
+<p>Birth Year: {{cow.birth_year }}</p>
+<p>Description: {{ cow.description }}</p>
+
+<a [routerLink]="['/cows', cow.id, 'edit']" routerLinkActive="active">Edit</a>
+<a (click)="onDelete()">Delete</a>
+</div>
