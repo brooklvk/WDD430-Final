@@ -6,7 +6,7 @@ var path = require('path');
 router.get('/', function(req, res, next) {
   // console.log('Resolved path:', path.join(__dirname, '../../dist/ranch/index.html'));
 
-  res.sendFile(path.join(__dirname, '../../dist/ranch/browser/index.csr.html'));
+  res.sendFile(path.join(__dirname, '../../dist/ranch/browser/index.html'));
 });
 
 module.exports = router;

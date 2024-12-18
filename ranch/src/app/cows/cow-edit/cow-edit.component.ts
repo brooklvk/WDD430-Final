@@ -11,7 +11,7 @@ import { WindRefService } from '../../wind-ref.service';
   selector: 'ranch-cow-edit',
   templateUrl: './cow-edit.component.html',
   styleUrl: './cow-edit.component.css',
-  standalone: false,
+  standalone: false
 })
 export class CowEditComponent implements OnInit {
 
@@ -34,6 +34,7 @@ export class CowEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
+      console.log('Cow ID from route:', id);
       if (!id) {
         this.editMode = false;
         return;
@@ -64,10 +65,10 @@ export class CowEditComponent implements OnInit {
     this.cowService.addCow(newCow);
    }
   
-  this.router.navigate(['/cow-list']);
+  this.router.navigate(['/cows/cow-list']);
   }
 
   onCancel() {
-    this.router.navigate(['/cow-list']);
+    this.router.navigate(['/cows/cow-list']);
   }
 }

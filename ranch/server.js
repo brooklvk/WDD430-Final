@@ -77,10 +77,11 @@ app.use(express.static(path.join(__dirname, 'dist/ranch/browser')));
 app.use('/', index);
 
 // ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ... 
+//what do i put here 
 
 // Tell express to map all other non-defined routes back to the index page
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/ranch/browser/index.csr.html'));
+  res.sendFile(path.join(__dirname, 'dist/ranch/browser/index.html'));
 });
 
 // Define the port address and tell express to use this port
