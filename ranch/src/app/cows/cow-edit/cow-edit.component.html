@@ -1,1 +1,67 @@
-<p>cow-edit works!</p>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+  
+      <form id="cow-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+        <div>
+            <input type="text" id="id" name="id" class="form-control" size="120" max="120" [ngModel]=cow.id required>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="name">Cow Tag:</label>
+            <input
+              type="text"
+              id="tag"
+              name="tag"
+              class="form-control"
+              size="120"
+              max="120"
+              [ngModel]=cow.tag
+              required>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="description">Cow Description:</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              class="form-control"
+              size="120"
+              max="255"
+              [ngModel]=cow.description>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="url">Cow Birth Year:</label>
+            <input
+              type="text"
+              id="birth_year"
+              name="birth_year"
+              class="form-control"
+              size="150"
+              max="255"
+              [ngModel]=cow.birth_year
+              required>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-xs-12 btn-toolbar">
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
+            <button class="btn btn-primary" type="button" (click)=onCancel()>Cancel</button>
+          </div>
+        </div>  
+    
+      </form>
+  
+    </div>
+  </div>
+  
+  

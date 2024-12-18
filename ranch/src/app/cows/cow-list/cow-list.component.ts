@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   selector: 'cms-cow-list',
   templateUrl: './cow-list.component.html',
   styleUrl: './cow-list.component.css',
-  imports: [CowItemComponent, CommonModule]
+  standalone: false
 })
 export class CowListComponent implements OnInit, OnDestroy {
   cows: Cow[] = [];

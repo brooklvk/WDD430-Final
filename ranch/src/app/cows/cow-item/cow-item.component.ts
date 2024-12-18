@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   selector: 'ranch-cow-item',
   templateUrl: './cow-item.component.html',
   styleUrl: './cow-item.component.css',
-  imports: [RouterModule]
+  standalone: false,
 })
 export class CowItemComponent {
   @Input() cow!: Cow;

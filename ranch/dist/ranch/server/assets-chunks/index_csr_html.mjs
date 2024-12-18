@@ -8,8 +8,7 @@ export default `<!doctype html>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 <style>*{font-family:Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif}</style><link rel="stylesheet" href="styles-4XSUI7QU.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-4XSUI7QU.css"></noscript></head>
 <body ngcm="">
-  <p>test</p>
   <ranch-root></ranch-root>
-<script src="polyfills-FFHMD2TL.js" type="module"></script><script src="main-PE7J5EXJ.js" type="module"></script></body>
+<script src="polyfills-FFHMD2TL.js" type="module"></script><script src="main-ER4OGUEC.js" type="module"></script></body>
 </html>
 `;

@@ -5,6 +5,7 @@ import { CowService } from './cow.service';
 @Component({
   selector: 'ranch-cows',
   templateUrl: './cows.component.html',
+  standalone: false,
   styleUrl: './cows.component.css'
 })
 export class CowsComponent implements OnInit {
