@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { CowsModule } from './cows/cows.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,17 +10,15 @@ import { FooterComponent } from './footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent
+    HeaderComponent,  // Declare HeaderComponent here
+    FooterComponent,  // Declare FooterComponent here
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CowsModule
+    CowsModule,
   ],
-  providers: [
-    provideClientHydration()
-  ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

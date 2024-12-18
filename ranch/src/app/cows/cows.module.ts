@@ -11,10 +11,6 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    CowsComponent,
-    CowItemComponent,
-    CowEditComponent,
-    CowListComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +18,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   exports: [
-    CowListComponent
   ]
 })
 export class CowsModule { } 

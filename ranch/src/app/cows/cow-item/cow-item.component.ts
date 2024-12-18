@@ -3,11 +3,13 @@ import { Cow } from '../cow.model';
 import { CowService } from '../cow.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'ranch-cow-item',
   templateUrl: './cow-item.component.html',
-  styleUrl: './cow-item.component.css'
+  styleUrl: './cow-item.component.css',
+  imports: [RouterModule]
 })
 export class CowItemComponent {
   @Input() cow!: Cow;
