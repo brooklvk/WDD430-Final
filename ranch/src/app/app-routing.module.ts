@@ -7,7 +7,8 @@ import { CowEditComponent } from './cows/cow-edit/cow-edit.component';
 const routes: Routes = [
   {path:'', redirectTo: '/cows/cow-list', pathMatch: 'full'},
   {path:'cows/cow-list', component: CowListComponent},
-  {path:'cows/:id/edit', component: CowEditComponent}
+  {path:'cows/edit', component: CowEditComponent},
+  {path:'cows/edit/:id', component: CowEditComponent}
 ];
 
 @NgModule({

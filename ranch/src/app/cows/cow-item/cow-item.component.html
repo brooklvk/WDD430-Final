@@ -4,6 +4,6 @@
 <p>Birth Year: {{cow.birth_year }}</p>
 <p>Description: {{ cow.description }}</p>
 
-<a [routerLink]="['/cows', cow.id, 'edit']" routerLinkActive="active">Edit</a>
-<a (click)="onDelete()">Delete</a>
+<a [routerLink]="['/cows/edit', cow.id]" routerLinkActive="active">Edit</a>
+<a (click)="onDelete(cow.id)">Delete</a>
 </div>

@@ -37,12 +37,16 @@ export class CowService {
   
   // Fetch cows from the backend (MongoDB)
   getCows(): Observable<Cow[]> {
-    return this.http.get<Cow[]>(this.apiUrl);
+    const cows = this.http.get<Cow[]>(this.apiUrl);
+    console.log(cows);
+    return cows;
   }
 
   // Fetch a single cow by id from the backend
   getCow(id: string): Observable<Cow> {
-    return this.http.get<Cow>(`${this.apiUrl}/${id}`);
+    const cow = this.http.get<Cow>(`${this.apiUrl}/${id}`)
+    console.log(cow);
+    return cow;
   }
 
   // Add a new cow to MongoDB
@@ -92,21 +96,14 @@ export class CowService {
   }
 
   // Delete a cow from MongoDB
-  deleteCow(cow: Cow) {
-    if (!cow) {
-      return;
-    }
+  deleteCow(id: string) {
 
-    const pos = this.cows.findIndex(existingCow => existingCow.id === cow.id);
-
-    if (pos < 0) {
-      return;
-    }
-
+    const cowToDelete = this.http.get<Cow>(`${this.apiUrl}/${id}`)
+  
     // Call the API to delete the cow from MongoDB
-    this.http.delete(`${this.apiUrl}/${cow.id}`).subscribe(
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe(
       () => {
-        this.cows.splice(pos, 1);
+        this.cows.splice(1);
         const cowsClone: Cow[] = this.cows.slice();
         this.cowListChangedEvent.next(cowsClone);
       },

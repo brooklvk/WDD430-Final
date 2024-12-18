@@ -34,32 +34,19 @@ export class CowEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const id = params['id'];
+      const id = params['id']; // Correctly extract the `id`
       console.log('Cow ID from route:', id);
       if (!id) {
         this.editMode = false;
         return;
       }
-
-      // Subscribe to getCow, which now returns an Observable
-      this.subscription.add(
-        this.cowService.getCow(id).subscribe(
-          (cow: Cow) => {
-            this.originalCow = cow;
-            if (!this.originalCow) {
-              return;
-            }
-            this.editMode = true;
-            this.cow = JSON.parse(JSON.stringify(this.originalCow));
-            console.log('Loaded cow:', this.originalCow);
-          },
-          error => {
-            console.error('Error fetching cow:', error);
-          }
-        )
-      );
+      this.editMode = true;
+      this.cowService.getCow(id).subscribe((cow: Cow) => {
+        this.cow = cow;
+      });
     });
   }
+  
 
   onSubmit(f: NgForm) {
     const id = f.value.id;

@@ -5,7 +5,7 @@
       <form id="cow-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
 
         <div>
-            <input type="text" id="id" name="id" class="form-control" size="120" max="120" [ngModel]=cow.id required>
+            <input type="text" id="id" name="id" class="form-control" size="120" max="120" [(ngModel)]="cow.id" required readonly>
         </div>
 
         <div class="row">
@@ -18,7 +18,7 @@
               class="form-control"
               size="120"
               max="120"
-              [ngModel]=cow.tag
+              [(ngModel)]="cow.tag"
               required>
           </div>
         </div>
@@ -33,7 +33,8 @@
               class="form-control"
               size="120"
               max="255"
-              [ngModel]=cow.description>
+              [(ngModel)]="cow.description"
+              required>
           </div>
         </div>
   
@@ -47,7 +48,7 @@
               class="form-control"
               size="150"
               max="255"
-              [ngModel]=cow.birth_year
+              [(ngModel)]="cow.birth_year"
               required>
           </div>
         </div>

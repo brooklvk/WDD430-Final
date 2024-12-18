@@ -2,8 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Cow } from '../cow.model';
 import { CowService } from '../cow.service';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'ranch-cow-item',
@@ -16,14 +14,12 @@ export class CowItemComponent {
 
   constructor(
     private cowService: CowService,
-    private router: Router,
-    private route: ActivatedRoute,
+    private router: Router
   ) {
-    this.cow = new Cow('','',0,'')
   }
 
-  onDelete() {
-    this.cowService.deleteCow(this.cow);
-    this.router.navigate(['/cow-list']);
+  onDelete(id: string) {
+    this.cowService.deleteCow(id);
+    this.router.navigate(['/cows/cow-list']);
   }
 }
