@@ -2,3 +2,14 @@ ranch-cow-item {
     padding: 10px;
 }
 
+a {
+    color: black;
+    background-color: rgb(147, 194, 147);
+    text-decoration: none;
+    padding: 10px;
+    font-size:medium;
+}
+
+a:hover {
+    background-color: rgb(196, 227, 196);
+}

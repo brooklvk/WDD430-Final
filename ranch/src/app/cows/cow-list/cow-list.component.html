@@ -1,4 +1,6 @@
 <div>
-    <!-- <h3>Cows</h3> -->
+    <a [routerLink]="['/cows', 00, 'edit']" routerLinkActive="active">Add New Cow</a> 
+    <!-- change^ to generate new id -->
+
     <ranch-cow-item *ngFor="let cow of cows" [cow]="cow"></ranch-cow-item>
 </div>
