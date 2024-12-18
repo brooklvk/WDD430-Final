@@ -1,33 +1,37 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Cow } from '../cow.model';
 import { CowService } from '../cow.service';
-import { CowItemComponent } from '../cow-item/cow-item.component';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'cms-cow-list',
   templateUrl: './cow-list.component.html',
-  styleUrl: './cow-list.component.css',
+  styleUrls: ['./cow-list.component.css'],
   standalone: false
 })
 export class CowListComponent implements OnInit, OnDestroy {
   cows: Cow[] = [];
-  subscription: Subscription;
+  subscription: Subscription = new Subscription();
 
-  constructor(public cowService: CowService) {
-    this.subscription = new Subscription();
+  constructor(private cowService: CowService) {
   }
 
   ngOnInit() {
-    this.cows = this.cowService.getCows();
-
-    this.subscription = this.cowService.cowListChangedEvent.subscribe((cowsList: Cow[]) => {
+    // Subscribe to the cows' data and listen to changes
+    this.subscription = this.cowService.getCows().subscribe((cowsList: Cow[]) => {
       this.cows = cowsList;
     });
+
+    // Listen for updates from cow list changes
+    this.subscription.add(
+      this.cowService.cowListChangedEvent.subscribe((cowsList: Cow[]) => {
+        this.cows = cowsList;
+      })
+    );
   }
 
   ngOnDestroy() {
+    // Clean up the subscriptions when the component is destroyed
     this.subscription.unsubscribe();
   }
 }

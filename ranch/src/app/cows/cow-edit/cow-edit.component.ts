@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NgModel } from '@angular/forms';
 import { Cow } from '../cow.model';
 import { CowService } from '../cow.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { WindRefService } from '../../wind-ref.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ranch-cow-edit',
   templateUrl: './cow-edit.component.html',
-  styleUrl: './cow-edit.component.css',
+  styleUrls: ['./cow-edit.component.css'],
   standalone: false
 })
 export class CowEditComponent implements OnInit {
@@ -19,6 +19,7 @@ export class CowEditComponent implements OnInit {
   cow: Cow = {} as Cow;
   editMode: boolean = false;
   nativeWindow: any;
+  subscription: Subscription = new Subscription();
 
   constructor(
     private cowService: CowService,
@@ -39,36 +40,49 @@ export class CowEditComponent implements OnInit {
         this.editMode = false;
         return;
       }
-      this.originalCow = this.cowService.getCow(id);
-      if (!this.originalCow) {
-        return;
-      }
 
-      this.editMode = true;
-      this.cow = JSON.parse(JSON.stringify(this.originalCow));
-      console.log('Loaded cow:', this.originalCow);
+      // Subscribe to getCow, which now returns an Observable
+      this.subscription.add(
+        this.cowService.getCow(id).subscribe(
+          (cow: Cow) => {
+            this.originalCow = cow;
+            if (!this.originalCow) {
+              return;
+            }
+            this.editMode = true;
+            this.cow = JSON.parse(JSON.stringify(this.originalCow));
+            console.log('Loaded cow:', this.originalCow);
+          },
+          error => {
+            console.error('Error fetching cow:', error);
+          }
+        )
+      );
     });
   }
 
-  onSubmit(f : NgForm) {
-    var id = f.value.id;
-    var tag = f.value.tag;
-    var birth_year = f.value.birth_year;
-    var description = f.value.description;
+  onSubmit(f: NgForm) {
+    const id = f.value.id;
+    const tag = f.value.tag;
+    const birth_year = f.value.birth_year;
+    const description = f.value.description;
     
-    var newCow = new Cow(id, tag, birth_year, description);
+    const newCow = new Cow(id, tag, birth_year, description);
 
-   if (this.editMode) {
-    this.cowService.updateCow(this.originalCow, newCow);
-   }
-   else {
-    this.cowService.addCow(newCow);
-   }
+    if (this.editMode) {
+      this.cowService.updateCow(this.originalCow, newCow);
+    } else {
+      this.cowService.addCow(newCow);
+    }
   
-  this.router.navigate(['/cows/cow-list']);
+    this.router.navigate(['/cows/cow-list']);
   }
 
   onCancel() {
     this.router.navigate(['/cows/cow-list']);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe(); // Make sure to clean up the subscription
   }
 }
