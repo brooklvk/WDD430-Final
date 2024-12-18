@@ -7,16 +7,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
 import { FooterComponent } from './footer.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,  // Declare HeaderComponent here
-    FooterComponent,  // Declare FooterComponent here
+    HeaderComponent,  
+    FooterComponent,  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CowsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
